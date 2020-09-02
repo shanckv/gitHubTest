@@ -1,0 +1,24 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+
+if __name__ == '__main__':
+    n = int(input())
+    for j in range(0,n):
+        S = str(input())
+        strN1 = ""
+        strN2 = ""
+        for k in range(0,len(S)):
+            if (k%2 == 0):
+                strN1 = strN1 + S[k] 
+            else:
+                strN2 = strN2 + S[k] 
+        print(strN1 + " " +strN2)
+        
+        # Enter your code here. Read input from STDIN. Print output to STDOUT
