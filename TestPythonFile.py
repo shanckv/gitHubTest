@@ -1,52 +1,25 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
-import sqlite3
+"""
+A Python version of the classic "bottles of beer on the wall" programming
+example.
 
-# Complete the function below.
-conn = sqlite3.connect('C:\\Users\\Nethrrashri\\Desktop\\Python 3 Programing Handson\\Sample.db')
-#conn = sqlite3.connect('SAMPLE.db')
-#create connection cursor
-cursor = conn.cursor()
+By Guido van Rossum, demystified after a version by Fredrik Lundh.
+"""
 
+import sys
 
-  #create table ITEMS using the cursor
+n = 2
+if sys.argv[1:]:
+    n = int(sys.argv[1])
 
-sql1 = 'DROP TABLE IF EXISTS ITEMS'
+def bottle(n):
+    if n == 0: return "no more bottles of beer"
+    if n == 1: return "one bottle of beer"
+    return str(n) + " bottles of beer"
 
-sql2 = '''
-
-       CREATE TABLE ITEMS (
-
-       item_id INT(6) NOT NULL,
-
-       item_name CHAR(20) NOT NULL,
-
-       item_description CHAR(20),
-
-       item_category CHAR(20),
-
-       quantity_in_stock INT(6)
-
-       )
-
-      '''
-
-cursor.execute(sql1)
-cursor.execute(sql2)
-
-#commit connection 
-
-conn.commit()
-
-cursor.execute("select * from ITEMS")
-
-rowout=[]     
-for row in cursor.fetchall():
-    rowout.append(row)
-    print( rowout  )  
-
-#close connection 
-
-conn.close()
-
-
+for i in range(n, 0, -1):
+    print(bottle(i), "on the wall,")
+    print(bottle(i) + ".")
+    print("Take one down, pass it around,")
+    print(bottle(i-1), "on the wall.")
